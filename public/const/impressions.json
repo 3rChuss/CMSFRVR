@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2024-09-10",
+    "impressions": 11521,
+    "ad_requests": 17028,
+    "revenue": 288.00
+  },
+  {
+    "date": "2024-09-11",
+    "impressions": 12000,
+    "ad_requests": 18000,
+    "revenue": 300.00
+  },
+  {
+    "date": "2024-09-12",
+    "impressions": 13000,
+    "ad_requests": 19000,
+    "revenue": 310.00
+  },
+  {
+    "date": "2024-09-13",
+    "impressions": 14000,
+    "ad_requests": 20000,
+    "revenue": 320.00
+  },
+  {
+    "date": "2024-09-14",
+    "impressions": 8000,
+    "ad_requests": 1000,
+    "revenue": 330.00
+  }
+]
