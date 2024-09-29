@@ -5,6 +5,7 @@ import { useLoader } from 'context/loaderContext'
 import { FC } from 'react'
 import colors from 'tailwindcss/colors'
 
+// simulated data
 const nodes = [
   {
     id: '1',
@@ -108,6 +109,7 @@ const nodes = [
   }
 ]
 
+// custom columns for table representation
 const COLUMNS = [
   { label: 'Ad Campaign', renderCell: (item: TableNode) => item.name },
   {
@@ -153,6 +155,13 @@ const COLUMNS = [
   }
 ]
 
+/**
+ * Table with advertisement metrics.
+ * It uses a custom theme for styling the table and its elements.
+ * The component handles loading and no data states.
+ *
+ * @returns {JSX.Element} The rendered AdMetricsTable component.
+ */
 const AdMetricsTable: FC = () => {
   const { loading, noData } = useLoader()
   const theme = useTheme({

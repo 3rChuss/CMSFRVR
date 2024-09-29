@@ -1,12 +1,16 @@
 import ProtectedRoutes from 'hoc/ProtectedRoutes'
 import AuthPage from 'pages/Auth/AuthPage'
-import Details from 'pages/Details'
 import { FC, Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
+// lazy loading
 const Dashboard = lazy(() => import('../pages/Dashboard'))
+const Details = lazy(() => import('../pages/Details'))
 const PageNotFound = lazy(() => import('../pages/404'))
 
+/**
+ * SiteRouter component
+ */
 const SiteRouter: FC = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>

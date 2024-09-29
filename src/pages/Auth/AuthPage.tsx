@@ -6,6 +6,10 @@ import { useLocation } from 'react-router-dom'
 const AuthPage: FC = () => {
   const location = useLocation()
 
+  /**
+   * Render the form based on the current location, used with memoization to prevent re-renders
+   * @returns JSX.Element
+   */
   const ActiveForm = useMemo(() => {
     if (location.pathname === '/login') {
       return <LoginForm />

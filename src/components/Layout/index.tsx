@@ -3,6 +3,13 @@ import SimulatedOptions from 'components/Options/SimulatedOptions'
 import Sidebar from 'components/Sidebar'
 import { FC, ReactNode } from 'react'
 
+/**
+ * Layout component that provides a structured layout for the application.
+ * @returns {JSX.Element} The rendered layout component.
+ * @remarks
+ * This component includes a sidebar, a header with an avatar, a simulated options section,
+ * and a main content area where the children components are rendered.
+ */
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div className="flex h-screen gap-1 bg-gray-900">

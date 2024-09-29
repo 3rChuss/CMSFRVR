@@ -1,6 +1,13 @@
 import { useLoader } from 'context/loaderContext'
 
+/**
+ * SimulatedOptions component provides a wrapper for simulated states
+ * enabling the user to toggle between loading and no data states.
+ * @returns {JSX.Element} The rendered SimulatedOptions component.
+ */
+
 const SimulatedOptions = () => {
+  // Use custom hook to set states in the rest of the app.
   const { setLoading, loading, setNoData, noData } = useLoader()
   return (
     <div className="flex flex-col gap-2">

@@ -10,6 +10,10 @@ type LoaderContextType = {
 
 const LoaderContext = createContext<LoaderContextType | undefined>(undefined)
 
+/**
+ * Custom context and hook to simulate loading and
+ * no data states for technical reviews proposes.
+ */
 export const useLoader = (): LoaderContextType => {
   const context = useContext(LoaderContext)
   if (!context) {

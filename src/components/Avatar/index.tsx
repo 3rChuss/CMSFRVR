@@ -47,6 +47,8 @@ const UserBubble = ({ name }: { name: string }) => {
 
 export default function Avatar({ size = 'medium', src, alt }: AvatarProps) {
   const { user } = useUser()
+
+  // If no src is provided, render an empty avatar
   if (!src) {
     return (
       <div className="relative inline-block">
