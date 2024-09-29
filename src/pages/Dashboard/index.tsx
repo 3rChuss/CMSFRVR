@@ -4,10 +4,12 @@ import Filters from 'components/KPI/Filters'
 import CustomAreaChart from 'components/Metrics/CustomAreaChart'
 import CustomBarList from 'components/Metrics/CustomBarList'
 import Revenue from 'components/Metrics/Revenue'
+import { useLoader } from 'context/loaderContext'
 import { IImpression, IKPI, IMetrics } from 'interfaces/metrics'
 import { FC, useEffect, useMemo, useState } from 'react'
 
 const Dashboard: FC = () => {
+  const { load, noData } = useLoader()
   const [data, setData] = useState<{
     impressions: IImpression[]
     kpis: IKPI[]
@@ -21,10 +23,9 @@ const Dashboard: FC = () => {
       revenue: 0
     }
   })
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchMetrics()
+    load(fetchMetrics)
   }, [])
 
   /**
@@ -46,11 +47,8 @@ const Dashboard: FC = () => {
       ])
 
       setData({ metrics, impressions: impressionsData, kpis: kpiData })
-      // Simulate loading
-      setTimeout(() => setLoading(false), 1000)
     } catch (error) {
       console.error('Error fetching metrics:', error)
-      setLoading(false)
     }
   }
 
@@ -88,12 +86,6 @@ const Dashboard: FC = () => {
 
   return (
     <div className="relative h-full">
-      {loading && (
-        <div className="absolute inset-0 z-50 flex select-none items-center justify-center bg-white/50">
-          <div className="size-32 animate-spin rounded-full border-y-2 border-gray-700" />
-        </div>
-      )}
-
       <h1
         id="usage-overview"
         className="my-4 scroll-mt-8 font-semibold text-white dark:text-gray-900 sm:text-2xl"
@@ -101,21 +93,33 @@ const Dashboard: FC = () => {
         Overview
       </h1>
 
+      <div className="mt-8 flex flex-col gap-4">
+        <Filters />
+      </div>
+
       <section className="w-full">
-        <Revenue data={data?.metrics} />
+        <Revenue
+          data={
+            noData
+              ? {
+                  ad_requests: 0,
+                  dailyImpressions: 0,
+                  revenue: 0
+                }
+              : data?.metrics
+          }
+        />
       </section>
 
       <section className="flex flex-col flex-wrap gap-2 lg:flex-nowrap lg:gap-8">
-        <div className="mt-8 flex flex-col gap-4">
-          <Filters />
-          <DailyKPICard data={data.kpis} />
-        </div>
+        <DailyKPICard data={noData ? [] : data.kpis} />
+
         <div className="flex flex-col gap-4 lg:flex-row">
           <div className="flex w-full lg:w-1/2">
             <CustomAreaChart
               categories={['impressions', 'ad_requests', 'revenue']}
-              data={data.impressions}
-              summary={summary}
+              data={noData ? [] : data.impressions}
+              summary={noData ? [] : summary}
               title="Follower metrics"
             />
           </div>

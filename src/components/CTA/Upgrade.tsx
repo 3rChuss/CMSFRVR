@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const UpgradeCTA: FC = () => {
   return (
-    <div className="rounded-lg bg-white/90">
+    <div className="rounded-lg bg-white">
       <div className="z-20 mx-auto w-full px-4 py-12 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8 lg:py-16">
         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
           <span className="block">Want to improve your metrics ?</span>

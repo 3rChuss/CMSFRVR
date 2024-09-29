@@ -8,7 +8,7 @@ const customTooltip = (props: CustomTooltipProps) => {
   if (!payload) return null
 
   return (
-    <div className="flex w-full flex-col gap-2 rounded-lg bg-gray-100 p-4 shadow-lg dark:bg-gray-800">
+    <div className="flex w-full flex-col gap-2 rounded-lg bg-gray-100 p-4 text-black shadow-lg dark:bg-gray-800">
       {payload.map((categoryPayload) => (
         <div
           className="flex w-full justify-between gap-8"

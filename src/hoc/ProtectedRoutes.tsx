@@ -1,4 +1,5 @@
 import Layout from 'components/Layout'
+import { LoaderProvider } from 'context/loaderContext'
 import { useUser } from 'context/userContext'
 import { Navigate, Outlet } from 'react-router-dom'
 
@@ -10,9 +11,11 @@ const ProtectedRoutes: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <Outlet />
-    </Layout>
+    <LoaderProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </LoaderProvider>
   )
 }
 

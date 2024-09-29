@@ -1,1 +1,1 @@
-export const sidebarRoutes = ['Overview', 'Details', 'Settings']
+export const sidebarRoutes = ['Overview', 'Details']
