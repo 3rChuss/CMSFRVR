@@ -10,6 +10,6 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     setupFiles: '.vitest/setup',
-    include: ['src/components/**/*.tsx']
+    include: ['src/**/*.tsx']
   }
 })

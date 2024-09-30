@@ -8,7 +8,9 @@ type LoaderContextType = {
   setNoData: (noData: boolean) => void
 }
 
-const LoaderContext = createContext<LoaderContextType | undefined>(undefined)
+export const LoaderContext = createContext<LoaderContextType | undefined>(
+  undefined
+)
 
 /**
  * Custom context and hook to simulate loading and

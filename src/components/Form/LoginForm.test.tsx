@@ -12,7 +12,6 @@ vi.mock('context/userContext', () => ({
   UserProvider: ({ children }: { children: React.ReactNode }) => children
 }))
 
-const mockedNavigate = vi.fn()
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   MemoryRouter: ({ children }: { children: React.ReactNode }) => children,
