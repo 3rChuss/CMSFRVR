@@ -14,7 +14,15 @@ describe('CustomBarList', () => {
     noData: boolean
   ) => {
     return render(
-      <LoaderContext.Provider value={{ loading, noData }}>
+      <LoaderContext.Provider
+        value={{
+          loading,
+          noData,
+          setLoading: vi.fn(),
+          setNoData: vi.fn(),
+          load: vi.fn()
+        }}
+      >
         {component}
       </LoaderContext.Provider>
     )

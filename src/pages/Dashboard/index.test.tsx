@@ -9,7 +9,15 @@ describe('Dashboard', () => {
 
   const renderWithContext = (component: JSX.Element) => {
     return render(
-      <LoaderContext.Provider value={{ load: mockLoad, noData: mockNoData }}>
+      <LoaderContext.Provider
+        value={{
+          loading: false,
+          noData: mockNoData,
+          setLoading: vi.fn(),
+          setNoData: vi.fn(),
+          load: mockLoad
+        }}
+      >
         {component}
       </LoaderContext.Provider>
     )
@@ -42,19 +50,33 @@ describe('Dashboard', () => {
 
     vi.spyOn(global, 'fetch').mockImplementation((url) => {
       console.log(url)
+      const mockResponse = (data: unknown) => {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: () => Promise.resolve(data),
+          headers: new Headers(),
+          redirected: false,
+          statusText: 'OK',
+          type: 'basic',
+          url: '',
+          clone: () => mockResponse(data),
+          body: null,
+          bodyUsed: false,
+          arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)),
+          blob: () => Promise.resolve(new Blob()),
+          formData: () => Promise.resolve(new FormData()),
+          text: () => Promise.resolve('')
+        } as unknown as Response)
+      }
+
       switch (url) {
         case './const/daily.json':
-          return Promise.resolve({
-            json: () => Promise.resolve({ metrics: mockData.metrics })
-          })
+          return mockResponse({ metrics: mockData.metrics })
         case './const/impressions.json':
-          return Promise.resolve({
-            json: () => Promise.resolve(mockData.impressions)
-          })
+          return mockResponse(mockData.impressions)
         case './const/kpis.json':
-          return Promise.resolve({
-            json: () => Promise.resolve(mockData.kpis)
-          })
+          return mockResponse(mockData.kpis)
         default:
           return Promise.reject(new Error('Unknown URL'))
       }
